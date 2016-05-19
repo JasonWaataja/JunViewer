@@ -40,15 +40,20 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/*
+/**
  * This is a Canvas that has a image of Jun. It randomly selects one and displays it.
  * It also represents the program so it contains the frame.
  * It loads images from a set which is listed in imageNames.
  * Clicking reselects the image and resizes everything.
+ * @author jason
+ *
  */
-
 public class JunViewerCanvas extends Canvas implements MouseListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * main window
 	 */
@@ -87,9 +92,10 @@ public class JunViewerCanvas extends Canvas implements MouseListener {
 	 */
 	private ChooserMode chooserMode;
 
+	/**
+	 * The menu bar
+	 */
 	private JMenuBar menuBar;
-	// private JMenu fileMenu;
-	// private JMenu helpMenu;
 
 	// names of the images, really bad way to do this
 	private String[] IMAGE_NAMES = { "00a6044b8e75b79df3e5bc040fe187b7.png.jpg", "017a6d4c6cfa628af5d2fdadf1f77179.png",
@@ -285,6 +291,10 @@ public class JunViewerCanvas extends Canvas implements MouseListener {
 		}
 	}
 
+	/**
+	 * gets the images contained in the jar file.
+	 * @return arraylist of the images in the jar.
+	 */
 	private ArrayList<URL> getImagesJarMode() {
 		ArrayList<URL> jarImages = new ArrayList<URL>(IMAGE_NAMES.length);
 		for (int i = 0; i < IMAGE_NAMES.length; i++) {
@@ -295,6 +305,10 @@ public class JunViewerCanvas extends Canvas implements MouseListener {
 		return jarImages;
 	}
 
+	/**
+	 * Gets images from the selected folder, not recursive. Shows an error dialog if there folder is null
+	 * @return all available images from the folder
+	 */
 	private ArrayList<URL> getImagesFolderMode() {
 		ArrayList<URL> folderImages = new ArrayList<URL>();
 		if (junDirectory != null) {
@@ -325,6 +339,9 @@ public class JunViewerCanvas extends Canvas implements MouseListener {
 		g.drawImage(bufferedJunImage, 0, 0, getWidth(), getHeight(), this);
 	}
 
+	/**
+	 * Sets the menus, this would probably be better done with a real editor and xml or something.
+	 */
 	private void createMenuBar() {
 		menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
@@ -391,6 +408,9 @@ public class JunViewerCanvas extends Canvas implements MouseListener {
 		mainWindow.setJMenuBar(menuBar);
 	}
 
+	/**
+	 * creates the main window, not the menus, though.
+	 */
 	private void createFrame() {
 		mainWindow = new JFrame();
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
